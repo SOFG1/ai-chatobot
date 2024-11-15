@@ -1,0 +1,137 @@
+@import 'mixins';
+
+// Button UI
+.tsai-button {
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: Mulish, sans-serif;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 22px;
+  transition: all 0.2s ease-in-out;
+
+  //Hover
+  &:hover {
+    opacity: 0.85;
+  }
+
+  //Success
+  &.success {
+    @include tsai-button-variant(var(--color-green), var(--color-text-secondary));
+  }
+
+  //Small
+  &.small {
+    padding: 6px 20px;
+  }
+
+  //Large
+  &.large {
+    padding: 12px 24px;
+  }
+}
+
+//Primary
+.tsai-button.primary {
+  background-color: var(--color-primary);
+}
+
+//Secondary
+.tsai-button.secondary {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-color: var(--color-btn-border);
+
+  &:hover {
+    background-color: var(--color-btn-hover-bg);
+    opacity: 1;
+  }
+}
+
+//Danger
+.tsai-button.danger {
+  background-color: var(--color-red);
+  color: var(--color-text-secondary);
+  border-color: transparent;
+
+  &:hover {
+    background-color: var(--color-red-dark);
+  }
+}
+
+//Rounded
+.tsai-button.rounded {
+  border-radius: 51px;
+}
+
+//With icon
+.tsai-button.with-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  i {
+    margin-right: 8px;
+    --ggs: 0.8;
+  }
+}
+
+.button-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  gap: 0.5rem;
+
+  &.large {
+    gap: 0.75rem;
+  }
+}
+
+//Disabled
+.tsai-button:disabled {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-btn-border);
+  color: var(--color-light-grey);
+
+  &:hover {
+    background-color: var(--color-background);
+    cursor: not-allowed;
+    opacity: 1;
+  }
+}
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  margin-bottom: 40px;
+  overflow-y: auto;
+}
+
+.tab {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-background);
+  border: 1px solid var(--color-primary);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Mulish', sans-serif;
+  padding: 4px 12px;
+  border-radius: 32px;
+  min-width: 98px;
+  height: 32px;
+  text-align: center;
+  cursor: pointer;
+
+  &.active {
+    background: var(--color-primary);
+    color: var(--color-text-secondary);
+  }
+}

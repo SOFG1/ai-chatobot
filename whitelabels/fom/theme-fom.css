@@ -1,0 +1,51 @@
+:root {
+    --color-primary: #00998a; /* New primary color */
+    --color-primary-dark: #004C94; /* Second primary color */
+    --color-secondary-purple: #5a7671; /* New secondary color */
+    --color-purple-2: #00998a; /* Darker shade of customer's primary color */
+    --color-purple-3: #00998a;
+    --color-text: #000;
+    --color-text-02: #00000033;
+    --color-text-dark: #090909;
+    --color-text-secondary: #fff;
+    --color-light-grey: #879d9a; /* New secondary color */
+    --color-dark-grey: #595959;
+    --color-message-grey: #525252;
+    --color-placeholder-grey: #d2dbda; /* New secondary color */
+    --color-file-grey: #7e7e7e;
+    --color-border: #6d6d6d33;
+    --color-border-hover: #6d6d6d80;
+    --color-background: #fff;
+    --color-scrollbar: #b8c7c5;
+    --color-scrollbar-hover: #879d9a;
+    --color-green: #449a69;
+    --color-green-dark: #3e8b5b;
+    --color-red: #ff0000;
+    --color-red-dark: #ff3227;
+    --toastify-icon-color-error: var(--color-red) !important;
+    --toastify-color-progress-error: var(--color-red) !important;
+    --color-btn-border: #cccccc;
+    --color-btn-hover-bg: #cccccc1a;
+    --color-btn-danger: #ff4136;
+    --color-btn-danger-dark: #ff3227;
+    --color-files-scrollbar: #b8c7c5;
+    --color-file-uploaded: #266d4d;
+    --color-files-size-grey: #a3a3a3;
+    --color-sidebar-grey: #555;
+    --color-citation-border: #00998a33; /* Primary color */
+    --color-citation-file: #F8F8FB;
+    --color-border-grey: #d2dbda; /* Secondary color */
+    --color-border-grey2: #e2e2e2;
+    --color-login-title: #00C6B2; /* Primary dark */
+    --color-grey-3: #e8e8e8;
+    --color-grey-4: #D9D9D9;
+    --color-folder-bg: #F0F3F9;
+    --color-directory-bg: #F0F2F9;
+    --background-light: #FBFBFB;
+    --gradient-primary: linear-gradient(172deg, rgba(0, 153, 138, 0.05) 1.38%, rgba(0, 76, 148, 0.05) 98.62%);
+    --gradient-secondary: linear-gradient(172deg, rgba(0, 153, 138, 0.1) 1.38%, rgba(0, 76, 148, 0.1) 98.62%);
+    --gradient-citation: radial-gradient(13.59% 9.26% at 50% 50%, rgba(0, 153, 138, 0.05) 0%, rgba(0, 76, 148, 0.05) 100%);
+
+    --logo-url: "/theme/logo.svg";
+    --login-background-image: url(/img/login-background-fom.jpg);
+}

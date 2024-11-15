@@ -1,0 +1,3689 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TextSenseAI Backend",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/chat/{conversation_id}": {
+      "post": {
+        "tags": [
+          "chat"
+        ],
+        "summary": "Conversation",
+        "operationId": "conversation_api_chat__conversation_id__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Conversation Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConversationData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Get All Conversations",
+        "operationId": "get_all_conversations_api_conversations__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ConversationPublic"
+                  },
+                  "type": "array",
+                  "title": "Response Get All Conversations Api Conversations  Get"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Create Conversation",
+        "operationId": "create_conversation_api_conversations__post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConversationCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/conversations/{id}": {
+                "operationId": "get_single_conversation_api_conversations__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/conversations/{id}": {
+                "operationId": "delete_conversation_api_conversations__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/title/{id}": {
+                "operationId": "create-title_api_title__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/title/{id}": {
+                "operationId": "patch_title_api_title__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chat/{conversation_id}": {
+                "operationId": "conversation_api_chat__conversation_id__post",
+                "parameters": {
+                  "conversation_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/conversations/{id}": {
+      "get": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Get Single Conversation",
+        "operationId": "get_single_conversation_api_conversations__id__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationPublicHistory"
+                }
+              }
+            },
+            "links": {
+              "DELETE /api/conversations/{id}": {
+                "operationId": "delete_conversation_api_conversations__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/title/{id}": {
+                "operationId": "create-title_api_title__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/title/{id}": {
+                "operationId": "patch_title_api_title__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chat/{conversation_id}": {
+                "operationId": "conversation_api_chat__conversation_id__post",
+                "parameters": {
+                  "conversation_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "conversations"
+        ],
+        "summary": "Delete Conversation",
+        "operationId": "delete_conversation_api_conversations__id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/title/{id}": {
+      "post": {
+        "tags": [
+          "title"
+        ],
+        "summary": "Create Title",
+        "operationId": "create-title_api_title__id__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/conversations/{id}": {
+                "operationId": "get_single_conversation_api_conversations__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/conversations/{id}": {
+                "operationId": "delete_conversation_api_conversations__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/title/{id}": {
+                "operationId": "patch_title_api_title__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chat/{conversation_id}": {
+                "operationId": "conversation_api_chat__conversation_id__post",
+                "parameters": {
+                  "conversation_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "title"
+        ],
+        "summary": "Patch Title",
+        "operationId": "patch_title_api_title__id__patch",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "conversations"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "title": "Title"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConversationPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/conversations/{id}": {
+                "operationId": "get_single_conversation_api_conversations__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/conversations/{id}": {
+                "operationId": "delete_conversation_api_conversations__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/title/{id}": {
+                "operationId": "create-title_api_title__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chat/{conversation_id}": {
+                "operationId": "conversation_api_chat__conversation_id__post",
+                "parameters": {
+                  "conversation_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chatbots/": {
+      "post": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Create Chatbot",
+        "description": "Create a new chatbot.",
+        "operationId": "create_chatbot_api_chatbots__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatbotCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+                }
+              }
+            },
+            "links": {
+              "GET /api/chatbots/{id}": {
+                "operationId": "get_chatbot_api_chatbots__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chatbots/{id}": {
+                "operationId": "add_files_api_chatbots__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/chatbots/{id}": {
+                "operationId": "patch_chatbot_api_chatbots__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/chatbots/{id}": {
+                "operationId": "delete_chatbot_api_chatbots__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/conversations": {
+                "operationId": "create_conversation_api_conversations__post",
+                "requestBody": {
+                  "chatbot_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `chatbot_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Get Chatbots",
+        "description": "Get multiple chatbots.",
+        "operationId": "get_chatbots_api_chatbots__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMaximum": 2147483648,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "exclusiveMinimum": 0,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+                  },
+                  "title": "Response Get Chatbots Api Chatbots  Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/chatbots/{id}": {
+      "get": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Get Chatbot",
+        "description": "Get a chatbot.",
+        "operationId": "get_chatbot_api_chatbots__id__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+                }
+              }
+            },
+            "links": {
+              "POST /api/chatbots/{id}": {
+                "operationId": "add_files_api_chatbots__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/chatbots/{id}": {
+                "operationId": "patch_chatbot_api_chatbots__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/chatbots/{id}": {
+                "operationId": "delete_chatbot_api_chatbots__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/conversations": {
+                "operationId": "create_conversation_api_conversations__post",
+                "requestBody": {
+                  "chatbot_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `chatbot_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Add Files",
+        "description": "Add links to files.\n\nNote: old links are not removed.",
+        "operationId": "add_files_api_chatbots__id__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "title": "Files"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+                }
+              }
+            },
+            "links": {
+              "GET /api/chatbots/{id}": {
+                "operationId": "get_chatbot_api_chatbots__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/chatbots/{id}": {
+                "operationId": "patch_chatbot_api_chatbots__id__patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/chatbots/{id}": {
+                "operationId": "delete_chatbot_api_chatbots__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/conversations": {
+                "operationId": "create_conversation_api_conversations__post",
+                "requestBody": {
+                  "chatbot_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `chatbot_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Patch Chatbot",
+        "description": "Patch a chatbot.",
+        "operationId": "patch_chatbot_api_chatbots__id__patch",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatbotUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+                }
+              }
+            },
+            "links": {
+              "GET /api/chatbots/{id}": {
+                "operationId": "get_chatbot_api_chatbots__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chatbots/{id}": {
+                "operationId": "add_files_api_chatbots__id__post",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/chatbots/{id}": {
+                "operationId": "delete_chatbot_api_chatbots__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/conversations": {
+                "operationId": "create_conversation_api_conversations__post",
+                "requestBody": {
+                  "chatbot_id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `chatbot_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "chatbots"
+        ],
+        "summary": "Delete Chatbot",
+        "description": "Delete a chatbot.",
+        "operationId": "delete_chatbot_api_chatbots__id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "chatbots"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/upload": {
+      "post": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Upload",
+        "description": "Upload a new file.",
+        "operationId": "upload_api_files_upload_post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "files"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "llm",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/LLMOptions"
+                }
+              ],
+              "default": "local",
+              "title": "Llm"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_api_files_upload_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilePublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/files/{id}": {
+                "operationId": "get_file_api_files__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "GET /api/files/download/{id}": {
+                "operationId": "download_file_api_files_download__id___file_name__get",
+                "parameters": {
+                  "id": "$response.body#/id",
+                  "file_name": ""
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/files/{id}": {
+                "operationId": "delete_file_api_files__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chatbots": {
+                "operationId": "create_chatbot_api_chatbots__post",
+                "requestBody": {
+                  "files": [
+                    "$response.body#/id"
+                  ]
+                },
+                "description": "The `id` value returned in the response can be used as a `file_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Request Entity Too Large"
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/download/{id}/{file_name}": {
+      "get": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Download File",
+        "description": "Download or preview a file by ID.\n\nThe trailing file name path is optional.",
+        "operationId": "download_file_api_files_download__id___file_name__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "File Name"
+            }
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Download"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/": {
+      "get": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Get Files",
+        "description": "Get a list of all files.\n\nOffset and limit can be controlled for pagination.",
+        "operationId": "get_files_api_files__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "files"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMaximum": 2147483648,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "exclusiveMinimum": 0,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FilePublic"
+                  },
+                  "title": "Response Get Files Api Files  Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/{id}": {
+      "get": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Get File",
+        "description": "Get information about a file by ID.",
+        "operationId": "get_file_api_files__id__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "files"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FilePublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/files/download/{id}": {
+                "operationId": "download_file_api_files_download__id___file_name__get",
+                "parameters": {
+                  "id": "$response.body#/id",
+                  "file_name": ""
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/files/{id}": {
+                "operationId": "delete_file_api_files__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "POST /api/chatbots": {
+                "operationId": "create_chatbot_api_chatbots__post",
+                "requestBody": {
+                  "files": [
+                    "$response.body#/id"
+                  ]
+                },
+                "description": "The `id` value returned in the response can be used as a `file_id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Delete File",
+        "description": "Delete a file by ID.",
+        "operationId": "delete_file_api_files__id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "files"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/register": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Register User",
+        "description": "Register a new user.",
+        "operationId": "register_user_api_users_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegister"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/token": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Login For Access Token",
+        "operationId": "login_for_access_token_api_users_token_post",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_login_for_access_token_api_users_token_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create User",
+        "description": "Create a new user.",
+        "operationId": "create_user_api_users__post",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "users"
+            ]
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Users",
+        "description": "Get a list of all users, newest first.\n\nOffset and limit can be controlled for pagination.",
+        "operationId": "get_users_api_users__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "users"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "exclusiveMaximum": 2147483648,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "exclusiveMinimum": 0,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserPublic"
+                  },
+                  "title": "Response Get Users Api Users  Get"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/profile": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get Logged In User",
+        "description": "Get the currently logged in user.",
+        "operationId": "get_logged_in_user_api_users_profile_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/change-password": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "User Change Password",
+        "description": "Change the current user's password.",
+        "operationId": "user_change_password_api_users_change_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserChangePassword"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/change-avatar": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "User Change Avatar",
+        "description": "Change the current user's avatar.",
+        "operationId": "user_change_avatar_api_users_change_avatar_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserChangeAvatar"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2PasswordBearer": []
+          }
+        ]
+      }
+    },
+    "/api/users/profile/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get User",
+        "description": "Get a user.",
+        "operationId": "get_user_api_users_profile__id__get",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "users"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublic"
+                }
+              }
+            },
+            "links": {
+              "PATCH /api/users/{id}/scopes": {
+                "operationId": "user_set_scopes_api_users__id__scopes_patch",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}/scopes": {
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "User Set Scopes",
+        "description": "Set a users permissions.",
+        "operationId": "user_set_scopes_api_users__id__scopes_patch",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "users"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSetScopes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublic"
+                }
+              }
+            },
+            "links": {
+              "GET /api/users/profile/{id}": {
+                "operationId": "get_user_api_users_profile__id__get",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              },
+              "DELETE /api/users/{id}": {
+                "operationId": "delete_user_api_users__id__delete",
+                "parameters": {
+                  "id": "$response.body#/id"
+                },
+                "description": "The `id` value returned in the response can be used as the `id` value"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete User",
+        "description": "Delete a user.",
+        "operationId": "delete_user_api_users__id__delete",
+        "security": [
+          {
+            "OAuth2PasswordBearer": [
+              "users"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_login_for_access_token_api_users_token_post": {
+        "properties": {
+          "grant_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "password"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grant Type"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "title": "Password"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "default": ""
+          },
+          "client_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Id"
+          },
+          "client_secret": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Secret"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Body_login_for_access_token_api_users_token_post"
+      },
+      "Body_upload_api_files_upload_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_api_files_upload_post"
+      },
+      "ChatbotCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "system_prompt": {
+            "type": "string",
+            "title": "System Prompt"
+          },
+          "citations_mode": {
+            "type": "boolean",
+            "title": "Citations Mode"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "files": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Files",
+            "default": []
+          },
+          "color": {
+            "type": "string",
+            "format": "color",
+            "title": "Color",
+            "examples": [
+              "red"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "system_prompt",
+          "citations_mode",
+          "icon",
+          "color"
+        ],
+        "title": "ChatbotCreate"
+      },
+      "ChatbotPublicWithFiles": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "system_prompt": {
+            "type": "string",
+            "title": "System Prompt"
+          },
+          "citations_mode": {
+            "type": "boolean",
+            "title": "Citations Mode"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "color": {
+            "type": "string",
+            "title": "Color"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/FilePublic"
+            },
+            "type": "array",
+            "title": "Files",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "system_prompt",
+          "citations_mode",
+          "icon",
+          "id",
+          "color"
+        ],
+        "title": "ChatbotPublicWithFiles"
+      },
+      "ChatbotUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "color": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "color"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Color",
+            "examples": [
+              "red"
+            ]
+          },
+          "system_prompt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "System Prompt"
+          },
+          "files": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Files"
+          },
+          "icon": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Icon"
+          },
+          "citations_mode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Citations Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ChatbotUpdate"
+      },
+      "ConversationCreate": {
+        "properties": {
+          "chatbot_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Chatbot Id",
+            "examples": [
+              "5dd4e868-96fc-4ef6-98b4-4589dd94b1bd"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "chatbot_id"
+        ],
+        "title": "ConversationCreate"
+      },
+      "ConversationData": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "llm": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LLMOptions"
+              }
+            ],
+            "default": "local"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "ConversationData"
+      },
+      "ConversationPublic": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "ts_created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts Created"
+          },
+          "ts_last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts Last Updated"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "ts_created",
+          "ts_last_updated"
+        ],
+        "title": "ConversationPublic"
+      },
+      "ConversationPublicHistory": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "ts_created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts Created"
+          },
+          "ts_last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Ts Last Updated"
+          },
+          "history": {
+            "items": {
+              "$ref": "#/components/schemas/DBMessage"
+            },
+            "type": "array",
+            "title": "History"
+          },
+          "chatbot": {
+            "$ref": "#/components/schemas/ChatbotPublicWithFiles"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "ts_created",
+          "ts_last_updated",
+          "history",
+          "chatbot"
+        ],
+        "title": "ConversationPublicHistory"
+      },
+      "DBMessage": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "role": {
+            "$ref": "#/components/schemas/MessageRole"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "llm": {
+            "$ref": "#/components/schemas/LLMOptions"
+          },
+          "order": {
+            "type": "integer",
+            "title": "Order"
+          }
+        },
+        "type": "object",
+        "required": [
+          "role",
+          "content",
+          "llm",
+          "order"
+        ],
+        "title": "DBMessage"
+      },
+      "ErrorMessage": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorMessage"
+      },
+      "FilePublic": {
+        "properties": {
+          "file_name": {
+            "type": "string",
+            "title": "File Name"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creation Time"
+          },
+          "mime_type": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "file_size": {
+            "type": "integer",
+            "title": "File Size"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "indexed": {
+            "type": "boolean",
+            "title": "Indexed",
+            "default": false
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file_name",
+          "created",
+          "mime_type",
+          "file_size",
+          "url",
+          "id"
+        ],
+        "title": "FilePublic"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LLMOptions": {
+        "type": "string",
+        "enum": [
+          "local",
+          "openai"
+        ],
+        "title": "LLMOptions"
+      },
+      "MessageRole": {
+        "type": "string",
+        "enum": [
+          "user",
+          "ai"
+        ],
+        "title": "MessageRole"
+      },
+      "Scope": {
+        "type": "string",
+        "enum": [
+          "users",
+          "files",
+          "chatbots",
+          "conversations"
+        ],
+        "title": "Scope"
+      },
+      "StatusMessage": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "StatusMessage"
+      },
+      "Token": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type"
+        ],
+        "title": "Token"
+      },
+      "User": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "password_hash": {
+            "type": "string",
+            "title": "Password Hash"
+          },
+          "scopes": {
+            "type": "string",
+            "title": "Scopes",
+            "default": ""
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creation Time"
+          },
+          "avatar": {
+            "type": "string",
+            "title": "Avatar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "password_hash",
+          "created",
+          "avatar"
+        ],
+        "title": "User"
+      },
+      "UserChangeAvatar": {
+        "properties": {
+          "avatar": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "title": "Avatar"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "avatar"
+        ],
+        "title": "UserChangeAvatar"
+      },
+      "UserChangePassword": {
+        "properties": {
+          "old_password": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 6,
+            "format": "password",
+            "title": "Old Password",
+            "writeOnly": true
+          },
+          "new_password": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 6,
+            "format": "password",
+            "title": "New Password",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "old_password",
+          "new_password"
+        ],
+        "title": "UserChangePassword"
+      },
+      "UserCreate": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 6,
+            "format": "password",
+            "title": "Password",
+            "writeOnly": true
+          },
+          "avatar": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "title": "Avatar",
+            "default": "https://www.skillbyte.de/wp-content/uploads/2024/06/cropped-favicon-192x192.png"
+          },
+          "scopes": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Scope"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              {
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "*"
+                  ],
+                  "const": "*"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            ],
+            "title": "Scopes",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "password"
+        ],
+        "title": "UserCreate"
+      },
+      "UserPublic": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Creation Time"
+          },
+          "scopes": {
+            "type": "string",
+            "title": "Scopes",
+            "default": ""
+          },
+          "avatar": {
+            "type": "string",
+            "title": "Avatar"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "id",
+          "created",
+          "avatar"
+        ],
+        "title": "UserPublic"
+      },
+      "UserRegister": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 6,
+            "format": "password",
+            "title": "Password",
+            "writeOnly": true
+          },
+          "avatar": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "title": "Avatar",
+            "default": "https://www.skillbyte.de/wp-content/uploads/2024/06/cropped-favicon-192x192.png"
+          }
+        },
+        "type": "object",
+        "required": [
+          "username",
+          "name",
+          "password"
+        ],
+        "title": "UserRegister"
+      },
+      "UserSetScopes": {
+        "properties": {
+          "scopes": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/Scope"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              {
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "*"
+                  ],
+                  "const": "*"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            ],
+            "title": "Scopes",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "UserSetScopes"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "OAuth2PasswordBearer": {
+        "type": "oauth2",
+        "flows": {
+          "password": {
+            "scopes": {},
+            "tokenUrl": "/api/users/token"
+          }
+        }
+      }
+    }
+  }
+}

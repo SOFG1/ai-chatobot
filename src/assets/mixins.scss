@@ -1,0 +1,31 @@
+@mixin tsai-button-variant($bg-color: var(--color-primary), $text-color: var(--color-text-secondary), $border-color: transparent) {
+  background-color: $bg-color;
+  border-color: $border-color;
+  color: $text-color;
+}
+
+@mixin gradientAnimation( $idleGradient, $hoverGradient, $transTime ) {
+  background-size: 100%;
+  background-image: $idleGradient;
+  position: relative;
+  z-index: 100;
+  &:before {
+    background-image: $hoverGradient;
+    border-radius: 12px;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -100;
+    transition: opacity $transTime;
+  }
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}

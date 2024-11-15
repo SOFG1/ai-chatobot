@@ -1,0 +1,288 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+strong {
+  font-weight: bold;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  /* min-height: 100vh; */
+  height: 100%;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
+  font-family:
+    Poppins,
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100%;
+}
+
+main {
+  padding: 40px 48px 20px 48px;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+h1 {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+h2 {
+  color: var(--color-text);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.view-title {
+  display: flex;
+  align-items: center;
+
+  .logo-icon {
+    margin-right: 10px;
+  }
+}
+
+.view-description {
+  margin-top: 8px;
+  color: var(--color-dark-grey);
+  font-size: 1rem;
+  line-height: normal;
+}
+
+/*
+  Vue Transition Helper!
+  Enter and leave animations can use different
+  durations and timing functions.
+*/
+/** Slide Fade Down **/
+.slide-fade-down-enter-active {
+  transition: all 0.26s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-down-leave-active {
+  transition: all 0.26s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-down-enter-from,
+.slide-fade-down-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/** Slide Fade Up **/
+.slide-fade-up-enter-active {
+  transition: all 0.26s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-up-leave-active {
+  transition: all 0.26s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-up-enter-from,
+.slide-fade-up-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar);
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbar-hover);
+}
+
+.logo-icon {
+  width: 25px;
+  height: 25px;
+}
+
+// View
+.tsai-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+}
+
+.animate-logo-icon {
+  animation: spin 1s ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+// Form
+.form-group {
+  font-family: Mulish, sans-serif;
+  margin-bottom: 14px;
+
+  input.tsai-input,
+  textarea.tsai-input {
+    &:focus {
+      outline: 2px solid var(--color-primary); // Change to your desired outline style
+      transition: outline 0.1s ease-in-out;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  small {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-files-size-grey);
+    margin-top: 0;
+  }
+
+  input[type='text'].tsai-input,
+  input[type='email'].tsai-input,
+  input[type='password'].tsai-input,
+  textarea.tsai-input {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: #fff;
+    font-size: 16px;
+    font-family: Mulish, sans-serif;
+  }
+
+  input[type='color'].tsai-input {
+    appearance: none;
+    padding: 0;
+    border: none;
+    width: 24px;
+    height: 24px;
+    margin-left: 16px;
+  }
+
+  input[type='color'].tsai-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  input[type='color'].tsai-input::-webkit-color-swatch {
+    border: none;
+  }
+
+  textarea.tsai-input {
+    resize: vertical;
+  }
+
+  .error-msg {
+    color: var(--color-red) !important;
+  }
+}
+
+div[data-tippy-root] {
+  z-index: 10 !important;
+}
+
+.form-group.error input {
+  outline: none !important;
+  border-color: var(--color-red) !important;
+}
+
+.form-group.error label {
+  color: var(--color-red);
+}
+
+.final-modal {
+  small {
+    display: block;
+    line-height: normal;
+  }
+
+  .final-modal-slot {
+    margin-bottom: 12px;
+  }
+}
+
+@media screen and (max-width: 1080px) and (min-width: 787px) {
+  html {
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  main {
+    padding: 40px 48px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    padding: 22px 20px;
+  }
+
+  .view-title h1 {
+    font-size: 20px;
+  }
+}
+
+// Helpers
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

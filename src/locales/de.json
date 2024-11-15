@@ -1,0 +1,443 @@
+{
+  "_global": {
+    "datepicker": {
+      "format": "dd.MM.yyyy HH:mm",
+      "locale": "de-DE",
+      "select-text": "Auswählen",
+      "cancel-text": "Abbrechen"
+    }
+  },
+  "home": {
+    "welcome": "Willkommen, {username}!",
+    "intro": "Ich unterstütze Sie und helfe, Ihre Arbeit zu erleichtern. \nFragen Sie mich gerne nach firmeninternen Kenntnissen oder zu allgemeinen Themen.",
+    "use-custom-chatbot": "Nutzen Sie einen maßgeschneiderten Chatbot",
+    "use-shared-chatbot": "...oder einen mit Ihnen geteilten Chatbot",
+    "toasts": {
+      "page-missing-permissions": "Sie haben keine Rechte um {page} zu öffnen.",
+      "invalid-credentials": "Benutzername oder Passwort falsch"
+    }
+  },
+  "login": {
+    "title": "Melden Sie sich mit Ihrem Account an",
+    "subtitle": "Willkommen zurück! Melden Sie sich mit Ihren Zugangsdaten an, um Zugriff auf Ihr Konto zu erhalten.",
+    "email-or-username-label": "E-Mail oder Benutzername",
+    "email-or-username-placeholder": "E-Mail oder Benutzername",
+    "password-label": "Passwort",
+    "password-placeholder": "Passwort",
+    "login-action": "Einloggen"
+  },
+  "chatbot": {
+    "title": "Chatbots",
+    "description-empty": "Erstellen Sie eigene Chatbots nach Ihren Bedürfnissen und passen Sie diese nach Ihren Vorstellungen an.",
+    "description-default": "Wählen Sie einen Chatbot aus, um einen neuen Chat zu starten. Sie können einen neuen Chatbot nach Ihren Bedürfnissen erstellen oder Ihre vorhandenen Chatbots nach Ihren Vorstellungen anpassen.",
+    "create-button": "Eigenen Chatbot erstellen",
+    "create-title": "Chatbot erstellen",
+    "edit-title": "Chatbot bearbeiten",
+    "shared-title": "Mit Ihnen geteilte Chatbots",
+    "shared-intro": "Geteilte Chatbots wurden von anderen Nutzern bereitgestellt und können ebenfalls zum Chatten verwendet werden. Sie können diese jedoch nicht bearbeiten.",
+    "sample-prompt": "Wie kann ich dir heute helfen?",
+    "form": {
+      "intro": "Erstellen Sie individuelle Chatbots. Wenn Sie Dateien hochladen und verknüpfen, kann er Ihnen durch den zusätzlichen Kontext noch präzisere Antworten liefern.",
+      "name-label": "Name des Chatbots",
+      "name-placeholder": "Berater für Hochschulrecht",
+      "description-label": "Beschreibung",
+      "description-placeholder": "Der Chatbot beantwortet Fragen zu Hochschulrecht und Studiengängen.",
+      "system-prompt-label": "System Prompt",
+      "system-prompt-placeholder": "Du bist ein KI Assistent, welcher Leuten hilft, Antworten auf ihre Fragen zu finden. Antworte in der Höflichkeitsform. Benutze die Quellen aus deinem Kontext.",
+      "connect-files": "Dateien verbinden",
+      "connected-files": "Keine Dateien ausgewählt|{n} Datei ausgewählt|{n} Dateien ausgewählt",
+      "save-action": "Speichern",
+      "create-action": "Erstellen",
+      "cancel-action": "Abbrechen",
+      "delete-action": "Löschen",
+      "preview-label": "Vorschau",
+      "citation-mode-label": "Zitiermodus",
+      "citation-mode-description": "Aktiviert Quellenverweise und referenziert Informationsquellen im Chat",
+      "citation-mode-enabled": "Ein",
+      "share": "Teilen mit",
+      "share-modal": {
+        "title": "Chatbot teilen",
+        "subtitle": "Teilen Sie diesen Chatbot mit einzelnen Kollegen oder einer Gruppe",
+        "all": "Alle",
+        "users": "Benutzer",
+        "groups": "Gruppen",
+        "share": "Jetzt teilen",
+        "can-use": "Darf nutzen",
+        "group-label": "Gruppe"
+      },
+      "file-modal": {
+        "title": "Verknüpfen Sie Ihre Dateien mit dem Chatbot",
+        "files-count": "Keine Dateien ausgewählt | {n} Datei ausgewählt | {n} Dateien ausgewählt",
+        "description": "Durch das Verknüpfen von Dateien kann ein Chatbot Ihnen kontextbezogene Antworten geben.",
+        "root-folder-name": "Alle Dateien"
+      },
+      "delete-modal": {
+        "title": "Chatbot löschen",
+        "description": "Dadurch wird der Chatbot <strong>{chatName}</strong> gelöscht."
+      }
+    },
+    "toasts": {
+      "error-fetching-chatbots": "Beim Laden Ihrer Chatbots ist ein Fehler aufgetreten.",
+      "chatbot-not-found-uuid": "Der Chatbot mit der ID {uuid} wurde nicht gefunden.",
+      "chatbot-not-found": "Der Chatbot mit der ID {uuid} wurde nicht gefunden.",
+      "chatbot-loading-failed": "Beim Laden des Chatbots ist ein Fehler aufgetreten.",
+      "share-chatbot-success": "Teilen erfolgreich",
+      "unshare-chatbot-success": "Freigabe aufgehoben",
+      "share-chatbot-error": "Beim Teilen des Chatbots ist ein Fehler aufgetreten.",
+      "unshare-chatbot-error": "Beim Aufheben der Freigabe des Chatbots ist ein Fehler aufgetreten."
+    },
+    "preset": {
+      "name": "Enterprise Search",
+      "description": "Hallo, ich helfe Ihnen dabei, Daten und Dokumente effizient zu finden. Fragen Sie mich einfach!",
+      "system-prompt": "Du bist der KI Assistent 'Enterprise Search', welcher Leuten hilft, Antworten auf unternehmensspezifische Fragen zu finden. Antworte in der Höflichkeitsform."
+    }
+  },
+  "conversations": {
+    "no-active-chats-label": "Noch keine aktiven Chats",
+    "rename-context-action": "Umbenennen",
+    "delete-context-action": "Löschen",
+    "new-chat-default-name": "Neuer Chat",
+    "rename-modal": {
+      "title": "Chat umbenennen",
+      "description": "Dadurch wird die Konversation '<strong>{chatName}</strong>' umbenannt."
+    },
+    "delete-modal": {
+      "title": "Chat löschen",
+      "description": "Dadurch wird die Konversation '<strong>{chatName}</strong>' gelöscht."
+    },
+    "toasts": {
+      "error-fetching-conversations": "Beim Laden Ihrer Chats ist ein Fehler aufgetreten.",
+      "error-starting-conversation": "Beim Starten Ihrer Chats ist ein Fehler aufgetreten.",
+      "error-sending-message": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten.",
+      "error-llm-not-set": "Wählen Sie zunächst unter Einstellungen ein LLM aus"
+    }
+  },
+  "files": {
+    "title": "Dateien",
+    "description": "Laden Sie PDF oder DOCX Dateien hoch und verknüpfen Sie diese mit Ihrem Chatbot, um kontextbezogene Antworten zu erhalten.",
+    "search-placeholder": "Suchen",
+    "status-label": "Indexstatus",
+    "sorting": "Sortierung",
+    "subtitle": "Ordner",
+    "filters": {
+      "a-z": "A-Z",
+      "last-change": "Änderungsdatum",
+      "ready": "Bereit",
+      "pending": "Wird indexiert",
+      "failed": "Fehlgeschlagen"
+
+    },
+    "files": {
+      "title": "Dateien",
+      "no-files": "Keine Dateien gefunden.",
+      "loading": "Wird geladen...",
+      "file-actions": {
+        "preview": "Vorschau",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
+        "reindex": "Neu indexieren",
+        "download": "Download",
+        "move": "Verschieben"
+      },
+      "file-status": {
+        "ready": "Bereit",
+        "indexing": "Wird indexiert",
+        "failed": "Fehlgeschlagen"
+      },
+      "edit-modal": {
+        "title": "Dateinamen ändern",
+        "label": "Dateiname",
+        "placeholder": "Dateiname",
+        "action": "Ändern"
+      },
+      "move-modal": {
+        "title": "Datei verschieben",
+        "description": "Wählen Sie den Ort aus, an den Sie die Datei verschieben möchten."
+      }
+    },
+    "upload-modal": {
+      "title": "Dateien hochladen",
+      "description": "Laden Sie hier Ihre Dateien hoch, um diese später mit einem Chatbot zu verknüpfen. Eingescannte Dokumente können nicht verarbeitet werden.",
+      "file-drop-area-label": "Dateien auswählen oder hier ablegen",
+      "restrictions-label-file-types": "Unterstützte Dateitypen: PDF, DOCX",
+      "restrictions-label-file-size": "Maximale Dateigröße: 50MB",
+      "uploading-label": "Wird hochgeladen...",
+      "upload-label": "Hochladen",
+      "cancel-action": "Abbrechen",
+      "selected-files-label": "Ausgewählte Dateien"
+    },
+    "delete-modal": {
+      "title": "Datei löschen?",
+      "description": "Dadurch wird die Datei <strong>{fileName}</strong> gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "processing": "Verarbeitung läuft..."
+    },
+    "folders": {
+      "loading": "Verarbeitung läuft...",
+      "no-folders": "Keine Ordner gefunden.",
+      "delete-modal": {
+        "title": "Ordner löschen",
+        "text": "Die im Ordner enthaltenen Dateien werden gelöscht."
+      },
+      "folder-actions": {
+        "move": "Verschieben",
+        "delete": "Löschen",
+        "edit": "Bearbeiten"
+      },
+      "create-modal": {
+        "title": "Ordner erstellen",
+        "label": "Neuer Ordner",
+        "placeholder": "Ordnername",
+        "action": "Erstellen"
+      },
+      "edit-modal": {
+        "title": "Ordnernamen ändern",
+        "label": "Ordnername",
+        "placeholder": "Ordnername",
+        "action": "Ändern"
+      },
+      "move-modal": {
+        "title": "Ordner verschieben",
+        "description": "Wählen Sie den Ort aus, an den Sie den Ordner verschieben möchten.",
+        "action": "Hierhin verschieben"
+      },
+      "name-error": "Ordnername darf '/' nicht enthalten"
+    },
+    "toasts": {
+      "file-deletion-error": "Die Datei konnte nicht gelöscht werden.",
+      "file-deletion-success": "Die Datei wurde gelöscht.",
+      "file-rename-success": "Erfolgreich geändert",
+      "file-rename-error": "Beim Ändern der Datei ist ein Fehler aufgetreten.",
+      "file-upload-success": "Die Datei {fileName} wurde hochgeladen.",
+      "file-upload-error": "Beim Hochladen der Datei {fileName} ist ein Fehler aufgetreten:\n{errorMsg}.",
+      "file-fetching-error": "Beim Laden der Dateien ist ein Fehler aufgetreten.",
+      "file-reindex-success": "Die Datei {fileName} wurde erfolgreich neu indexiert.",
+      "file-reindex-error": "Beim Neu-Indexieren der Datei {fileName} ist ein Fehler aufgetreten.",
+      "file-move-success": "Datei verschoben",
+      "file-move-error": "Fehler beim Verschieben der Datei",
+      "directory-rename-error": "Beim Umbenennen des Ordners ist ein Fehler aufgetreten.",
+      "directory-move-error": "Beim Verschieben des Ordners ist ein Fehler aufgetreten.",
+      "directory-delete-success": "Der Ordner wurde gelöscht.",
+      "directory-delete-error": "Beim Löschen des Ordners ist ein Fehler aufgetreten.",
+      "directory-edit-error": "Beim Bearbeiten des Ordners ist ein Fehler aufgetreten.",
+      "directory-create-error": "Bei der Erstellung des Ordners ist ein Fehler aufgetreten.",
+      "illegal-character-in-foldername": "Der Ordner konnte nicht erstellt werden, da der Name ein ungültiges Zeichen enthält: {sign}"
+    }
+  },
+  "color-picker-component": {
+    "title": "Farbe"
+  },
+  "dropdown-component": {
+    "deselect-label": "Dieser Wert kann nicht entfernt werden",
+    "select-label": "Drücke Enter zur Auswahl"
+  },
+  "create-user-component": {
+    "title": "Neuen Nutzer anlegen",
+    "username-label": "Benutzername",
+    "username-placeholder": "Name des Benutzers",
+    "email-label": "E-Mail",
+    "email-placeholder": "E-Mail des Benutzers",
+    "display-name-label": "Anzeigename",
+    "display-name-placeholder": "Name",
+    "password-label": "Passwort",
+    "password-placeholder": "Initialpasswort",
+    "avatar-url-label": "Avatar-URL",
+    "avatar-url-placeholder": "Avatar-URL des Benutzers",
+    "role-label": "Rolle",
+    "create-action": "Erstellen",
+    "toasts": {
+      "creation-success": "Der Nutzer wurde angelegt.",
+      "creation-error": "Beim Erstellen des Nutzers ist ein Fehler aufgetreten."
+    }
+  },
+  "groups": {
+    "icon": "Icon",
+    "name": "Name",
+    "description": "Beschreibung",
+    "members": "Mitglieder",
+    "owner": "Ersteller",
+    "member": "Mitglied",
+    "no-groups": "Keine Gruppen gefunden",
+    "delete-group": {
+      "title": "Möchten Sie die Gruppe wirklich löschen?",
+      "text": "Gruppe löschen",
+      "processing": "Gruppe wird gelöscht...",
+      "error": "Beim Löschen ist ein Fehler aufgetreten.",
+      "success": "Die Gruppe wurde gelöscht."
+    },
+    "edit-group": {
+      "title": "Gruppe bearbeiten",
+      "button": "Speichern",
+      "success": "Die Gruppe wurde erfolgreich geändert.",
+      "error": "Beim Ändern der Gruppe ist ein Fehler aufgetreten.",
+      "loading": "Änderungen werden gespeichert..."
+    },
+    "add-member": {
+      "title": "Benutzer hinzufügen",
+      "add": "Hinzufügen",
+      "member": "Benutzer",
+      "owner": "Ersteller",
+      "success": "Der Benutzer wurde erfolgreich hinzugefügt.",
+      "error": "Beim Hinzufügen des Benutzers ist ein Fehler aufgetreten."
+    },
+    "delete-member": {
+      "title": "Wollen Sie diesen Benutzer aus der Gruppe entfernen?",
+      "text": "Benutzer aus der Gruppe entfernen",
+      "processing": "Benutzer wird aus der Gruppe entfernt...",
+      "error": "Beim Entfernen des Benutzers ist ein Fehler aufgetreten.",
+      "success": "Der Benutzer wurde erfolgreich aus der Gruppe entfernt."
+    },
+    "create-group": {
+      "button": "Gruppe erstellen",
+      "title": "Gruppe erstellen",
+      "name": "Name",
+      "description": "Beschreibung",
+      "icon": "Icon",
+      "create": "Erstellen",
+      "loading": "Gruppe wird erstellt...",
+      "success": "Die Gruppe wurde erfolgreich erstellt.",
+      "error": "Beim Erstellen der Gruppe ist ein Fehler aufgetreten."
+    },
+    "toasts": {
+      "fetch-error": "Beim Laden der Gruppen ist ein Fehler aufgetreten.",
+      "create-error": "Beim Erstellen der Gruppe ist ein Fehler aufgetreten.",
+      "add-user-error": "Beim Hinzufügen des Nutzers zur Gruppe ist ein Fehler aufgetreten."
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "general-tab": "Allgemein",
+    "users-tab": "Benutzer",
+    "groups-tab": "Gruppen",
+    "avatar-url": "Ihre Avatar-URL",
+    "logout-action": "Abmelden",
+    "profile-action": "Profil",
+    "edit-user-role": {
+      "title": "Benutzerrolle ändern",
+      "label": "Rolle",
+      "edit-action": "Ändern"
+    },
+    "account": {
+      "title": "Persönliche Einstellungen",
+      "description": "Hier können Sie Ihren Namen oder Ihr Passwort ändern.",
+      "profile-tab-label": "Profil",
+      "security-tab-label": "Sicherheit"
+    },
+    "password": {
+      "error-current-password": "Bitte geben Sie Ihr aktuelles Passwort ein",
+      "error-new-password": "Bitte geben Sie Ihr neues Passwort ein",
+      "error-repeat-password": "Bitte bestätigen Sie Ihr neues Passwort",
+      "error-mismatch-password": "Die Passwörter stimmen nicht überein",
+      "current-password-label": "Aktuelles Passwort",
+      "new-password-label": "Neues Passwort",
+      "repeat-password-label": "Wiederholen Sie das neue Passwort",
+      "change-password": "Passwort ändern",
+      "toasts": {
+        "change-password-error": "Beim Ändern des Passworts ist ein Fehler aufgetreten."
+      }
+    },
+    "edit-profile": {
+      "avatar-label": "Avatar",
+      "change-avatar-action": "Ändern",
+      "username-label": "Benutzername",
+      "display-name-label": "Anzeigename",
+      "display-name-description": "Dies kann Ihr Vorname oder ein Spitzname sein - wie auch immer Sie von AI angesprochen werden möchten.",
+      "save-action": "Speichern",
+      "cancel-action": "Abbrechen",
+      "avatar-modal": {
+        "title": "Avatar ändern",
+        "description": "Ihre Avatar-URL"
+      },
+      "toasts": {
+        "avatar-change-success": "Ihr Avatar wurde aktualisiert.",
+        "avatar-change-error": "Beim Aktualisieren Ihres Avatars ist ein Fehler aufgetreten:\n{errorMsg}",
+        "name-change-success": "Ihr Name wurde aktualisiert.",
+        "name-change-error": "Beim Aktualisieren Ihres Namens ist ein Fehler aufgetreten:\n{errorMsg}",
+        "role-change-success": "Die Rolle wurde aktualisiert.",
+        "role-change-error": "Beim Aktualisieren der Rolle ist ein Fehler aufgetreten:\n{errorMsg}"
+      }
+    },
+    "user-table": {
+      "avatar": "Avatar",
+      "username": "Nutzername",
+      "display-name": "Name",
+      "role": "Rolle",
+      "create": "Benutzer anlegen",
+      "created": "Angelegt",
+      "no-users": "Keine Nutzer gefunden",
+      "toasts": {
+        "user-deletion-success": "Der Nutzer wurde gelöscht.",
+        "user-deletion-error": "Beim Löschen des Nutzers ist ein Fehler aufgetreten:\n{errorMsg}",
+        "role-change-success": "Die Rolle wurde aktualisiert.",
+        "role-change-error": "Beim Aktualisieren der Rolle ist ein Fehler aufgetreten:\n{errorMsg}"
+      }
+    },
+    "llm-label": "LLM",
+    "llm-description": ""
+  },
+  "citation": {
+    "title": "Quellenangabe",
+    "subtitle": "Zitat",
+    "related-file": "Datei",
+    "page": "Seite {n}",
+    "file-size": "Dateigröße: {n}",
+    "loading": "Lädt..."
+  },
+  "delete-modal": {
+    "confirm-action": "Löschen",
+    "cancel-action": "Abbrechen"
+  },
+  "backend": {
+    "error": {
+      "cant-change-superadmin-permission": "Die Berechtigungen von Superadmins können nicht verändert werden.",
+      "cant-delete-superadmin": "Ein Superadmin Account kann nicht gelöscht werden.",
+      "chatbot-already-owned": "Dieser Benutzer ist bereits Besitzer des Chatbots.",
+      "chatbot-exists": "Der Chatbot existiert bereits.",
+      "chatbot-missing": "Der Chatbot konnte nicht gefunden werden.",
+      "chatbot-not-found": "Der Chatbot konnte nicht gefunden werden.",
+      "chatbot-shared-group": "Der Chatbot wurde bereits mit der Gruppe geteilt.",
+      "chatbot-shared-user": "Der Chatbot wurde bereits mit diesem Benutzer geteilt.",
+      "conversation-not-found": "Die Unterhaltung wurde nicht gefunden.",
+      "llm-not-found": "Das LLM wurde nicht gefunden, bitte wählen Sie ein verfügbares LLM in den Einstellungen aus.",
+      "conversation-title-not-found": "Der Titel der Konversation konnte nicht gefunden werden.",
+      "file-exists-for-user": "Diese Datei existiert bereits.",
+      "file-exists": "Diese Datei existiert bereits.",
+      "file-not-found": "Die Datei konnte nicht gefunden werden.",
+      "file-s_linked-to-chatbot": "Folgende Dateien wurden bereits mit dem Chatbot verknüpft: {duplicate_file_ids}",
+      "file-s-not-found": "Folgende Dateien wurden nicht gefunden: {file_ids_not_found}",
+      "file-too-large": "Die Datei ist zu groß. Die maximale Dateigröße von {max_file_size_mb} MB wurde überschritten.",
+      "group-not-found": "Die Gruppe wurde nicht gefunden.",
+      "incorrect-password": "Passwort inkorrekt",
+      "insufficient-permissions": "Sie verfügen nicht über die Berechtigung, diese Aktion auszuführen.",
+      "invalid-credentials": "Die Anmeldeinformationen konnten nicht validiert werden.",
+      "invalid-user-provided-credentials": "Falscher Benutzername oder Passwort",
+      "message-from-user-expected": "Beim Laden der Nachrichten ist ein Fehler aufgetreten.",
+      "message-not-found": "Beim Laden der Nachrichten ist ein Fehler aufgetreten.",
+      "no-messages-provided": "Beim Laden der Nachrichten ist ein Fehler aufgetreten.",
+      "not-authorized": "Ein Fehler ist aufgetreten.",
+      "rate-only-ai-messages": "Nur KI-Nachrichten können bewertet werden.",
+      "unable-to-store-file": "Datei konnte nicht gespeichert werden.",
+      "unsupported-media-type": "Der Medientyp {detected_media_type} wird nicht unterstützt.",
+      "user-exists": "Der Benutzer existiert bereits.",
+      "user-in-group": "Der Benutzer ist bereits in der Gruppe.",
+      "user-not-authorized": "Ein Fehler ist aufgetreten.",
+      "user-not-found": "Der Benutzer konnte nicht gefunden werden.",
+      "validation-error": "Ein Fehler ist aufgetreten.",
+      "cant-delete-root-directory": "Dieser Ordner kann nicht gelöscht werden.",
+      "cant-move-root-directory": "Dieser Ordner kann nicht verschoben werden.",
+      "directory-cycle": "Dieser Ordner kann nicht an den Zielort verschoben werden.",
+      "directory-exists": "Dieser Ordner existiert bereits.",
+      "directory-not-found": "Der Ordner konnte nicht gefunden werden.",
+      "file-expired": "Diese Datei ist abgelaufen.",
+      "file-s-invalid-status": "Abgelaufene Dateien können nicht verlinkt werden.",
+      "too-many-requests": "Ein Fehler ist aufgetreten.",
+      "unable-to-delete-file": "Beim Löschen der Datei ist ein Fehler aufgetreten.",
+      "not-valid-provider-model": "Ungültiges Embedding-Modell oder Embedding-Anbieter wurde ausgewählt.",
+      "index-not-found": "Index wurde nicht gefunden.",
+      "internal-server-error": "Ein Fehler ist aufgetreten.",
+      "indexer-was-not-initialized": "Der Indexer wurde nicht initialisiert.",
+      "not-the-last-message-was-chosen-for-editing": "Man kann nur die letzte Nachricht im Chat aktualisieren.",
+      "group-can-not-be-modified-manually": "Gruppe kann nicht manuell geändert werden",
+      "group-can-not-be-deleted": "Gruppe kann nicht gelöscht werden"
+    }
+  }
+}
